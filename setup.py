@@ -8,15 +8,15 @@ def read(fname):
 
 
 setup(
-    name='<your-pypi-package-name>',
+    name='nasa-wildfires',
     version='0.0.1',
-    description="<your-repo-description>",
+    description="A Python interface for downloading wildfires data from NASA",
     long_description=read('README.rst'),
     author='Los Angeles Times Data Desk',
     author_email='datadesk@latimes.com',
-    url='http://www.github.com/datadesk/<your-repo-slug>',
+    url='http://www.github.com/datadesk/nasa-wildfires',
     license="MIT",
-    packages=("<your-python-module-name>",),
+    packages=("nasa_wildfires",),
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Programming Language :: Python',

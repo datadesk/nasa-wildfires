@@ -1,7 +1,7 @@
-python-open-source-template
-===========================
+nasa-wildfires
+==============
 
-A template repository for Python open-source software projects
+A Python interface for downloading wildfires data from NASA
 
 Contributing
 ------------
