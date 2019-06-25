@@ -5,7 +5,9 @@ from geojson import Feature, FeatureCollection, Point
 
 def get_modis():
     """
-    Download latest 24hr MODIS data. Returns geojson file.
+    Hotspots detected by the MODIS satellite in a recent 24-hour period.
+
+    Returns GeoJSON.
     """
     base_url = 'https://firms.modaps.eosdis.nasa.gov/data/active_fire/c6/csv/{}'
     contiguous_url = 'MODIS_C6_USA_contiguous_and_Hawaii_24h.csv'
@@ -15,7 +17,9 @@ def get_modis():
 
 def get_viirs():
     """
-    Download latest 24hr VIIRS data. Returns geojson file.
+    Hotspots detected by the VIRRS satellite in a recent 24-hour period.
+
+    Returns GeoJSON.
     """
     base_url = 'https://firms.modaps.eosdis.nasa.gov/data/active_fire/viirs/csv/VNP14IMGTDL_NRT_{}'
     contiguous_url = 'USA_contiguous_and_Hawaii_24h.csv'

@@ -12,12 +12,12 @@ def cmd():
     pass
 
 
-@cmd.command(help="Wildfires spotted in the last 24 hours by the MODIS satellite")
+@cmd.command(help="Hotspots detected by the MODIS satellite in a recent 24-hour period")
 def modis():
     click.echo(get_modis())
 
 
-@cmd.command(help="Wildfires spotted in the last 24 hours by the VIRRS satellite")
+@cmd.command(help="Hotspots detected by the VIRRS satellite in a recent 24-hour period")
 def viirs():
     click.echo(get_viirs())
 

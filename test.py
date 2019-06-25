@@ -4,7 +4,7 @@ import unittest
 from nasa_wildfires import get_modis, get_viirs
 
 
-class MyUnitTest(unittest.TestCase):
+class NasaWildfiresUnitTest(unittest.TestCase):
 
     def test_modis(self):
         get_modis()
