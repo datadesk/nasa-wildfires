@@ -3,7 +3,7 @@ import csv
 from geojson import Feature, FeatureCollection, Point
 
 
-def download_and_format(base_url, contiguous_url, alaska_url, filename):
+def _download_and_format(base_url, contiguous_url, alaska_url, filename):
     """
     Generic function for downloading data from NASA and formatting to geojson
     """
@@ -22,9 +22,7 @@ def download_and_format(base_url, contiguous_url, alaska_url, filename):
                         properties=r
                     )
                 )
-        collection = FeatureCollection(features)
-        with open("{}.geojson".format(filename), "w") as f:
-            f.write('%s' % collection)
+        return FeatureCollection(features)
 
 
 def get_modis():
@@ -36,7 +34,7 @@ def get_modis():
     contiguous_url = 'MODIS_C6_USA_contiguous_and_Hawaii_24h.csv'
     alaska_url = 'MODIS_C6_Alaska_24h.csv'
 
-    download_and_format(base_url, contiguous_url, alaska_url, 'MODIS')
+    _download_and_format(base_url, contiguous_url, alaska_url, 'MODIS')
 
 
 def get_viirs():
@@ -48,7 +46,7 @@ def get_viirs():
     contiguous_url = 'USA_contiguous_and_Hawaii_24h.csv'
     alaska_url = 'Alaska_24h.csv'
 
-    download_and_format(base_url, contiguous_url, alaska_url, 'VIIRS')
+    _download_and_format(base_url, contiguous_url, alaska_url, 'VIIRS')
 
 
 if __name__ == '__main__':
