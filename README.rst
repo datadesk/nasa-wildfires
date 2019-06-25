@@ -6,6 +6,8 @@ Download wildfire data from NASA satellites
 Installation
 ------------
 
+::
+
     $ pipenv install nasa_wildfires
 
 
@@ -42,7 +44,7 @@ Download a GeoJSON of hotspots detected by the VIIRS satellite in a recent 24-ho
 Python usage
 ------------
 
-Import the library.
+Import the library. ::
 
     >>> import nasa_wildfires
 
