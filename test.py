@@ -1,12 +1,14 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 import unittest
+from nasa_wildfires import get_modis, get_viirs
 
 
 class MyUnitTest(unittest.TestCase):
 
-    def test_foo(self):
-        pass
+    def test_modis(self):
+        get_modis()
+        get_viirs()
 
 
 if __name__ == '__main__':
