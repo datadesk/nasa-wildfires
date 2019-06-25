@@ -10,7 +10,7 @@ def read(fname):
 setup(
     name='nasa-wildfires',
     version='0.0.1',
-    description="A Python interface for downloading wildfires data from NASA",
+    description="Download wildfire data from NASA satellites",
     long_description=read('README.rst'),
     author='Los Angeles Times Data Desk',
     author_email='datadesk@latimes.com',
