@@ -8,6 +8,8 @@ class MyUnitTest(unittest.TestCase):
 
     def test_modis(self):
         get_modis()
+
+    def test_viirs(self):
         get_viirs()
 
 
