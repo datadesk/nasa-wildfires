@@ -11,6 +11,7 @@ coverage = "*"
 [packages]
 requests = "*"
 geojson = "*"
+click = "*"
 
 [requires]
 python_version = "3.7"

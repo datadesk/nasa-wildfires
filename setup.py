@@ -17,6 +17,10 @@ setup(
     url='http://www.github.com/datadesk/nasa-wildfires',
     license="MIT",
     packages=("nasa_wildfires",),
+    entry_points="""
+        [console_scripts]
+        nasawildfires=nasa_wildfires.cli:cmd
+    """,
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Programming Language :: Python',
