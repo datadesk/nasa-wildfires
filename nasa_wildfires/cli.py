@@ -23,4 +23,4 @@ def viirs():
 
 
 if __name__ == '__main__':
-    cli()
+    cmd()
