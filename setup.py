@@ -9,7 +9,7 @@ def read(fname):
 
 setup(
     name='nasa-wildfires',
-    version='0.0.1',
+    version='0.0.2',
     description="Download wildfire data from NASA satellites",
     long_description=read('README.rst'),
     author='Los Angeles Times Data Desk',
@@ -26,6 +26,12 @@ setup(
         'Programming Language :: Python',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3 :: Only',
         'License :: OSI Approved :: MIT License',
     ],
+    project_urls={
+        'Maintainer': 'https://github.com/datadesk',
+        'Source': 'https://github.com/datadesk/nasa-wildfires',
+        'Tracker': 'https://github.com/datadesk/nasa-wildfires/issues'
+    },
 )
