@@ -17,7 +17,7 @@ def modis():
     click.echo(get_modis())
 
 
-@cmd.command(help="Hotspots detected by the VIRRS satellite in a recent 24-hour period")
+@cmd.command(help="Hotspots detected by the VIIRS satellite in a recent 24-hour period")
 def viirs():
     click.echo(get_viirs())
 

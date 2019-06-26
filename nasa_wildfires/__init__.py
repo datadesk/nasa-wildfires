@@ -17,7 +17,7 @@ def get_modis():
 
 def get_viirs():
     """
-    Hotspots detected by the VIRRS satellite in a recent 24-hour period.
+    Hotspots detected by the VIIRS satellite in a recent 24-hour period.
 
     Returns GeoJSON.
     """
