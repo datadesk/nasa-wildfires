@@ -12,7 +12,7 @@ Installation
 
 
 Command-line usage
------------------
+------------------
 
 ::
 
@@ -77,6 +77,6 @@ Shipping new version to PyPI. ::
 Developing the CLI
 ------------------
 
-The command-line interface is implemented using Click and setuptools. To install it locally for development inside your virtual environment, run the following installation command, as `[`prescribed by the Click documentation <https://click.palletsprojects.com/en/7.x/setuptools/#setuptools-integration>`_. ::
+The command-line interface is implemented using Click and setuptools. To install it locally for development inside your virtual environment, run the following installation command, as `prescribed by the Click documentation <https://click.palletsprojects.com/en/7.x/setuptools/#setuptools-integration>`_. ::
 
     $ pip install --editable .
