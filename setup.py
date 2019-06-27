@@ -9,7 +9,7 @@ def read(fname):
 
 setup(
     name='nasa-wildfires',
-    version='0.0.2',
+    version='0.0.3',
     description="Download wildfire data from NASA satellites",
     long_description=read('README.rst'),
     author='Los Angeles Times Data Desk',
@@ -17,6 +17,11 @@ setup(
     url='http://www.github.com/datadesk/nasa-wildfires',
     license="MIT",
     packages=("nasa_wildfires",),
+    install_requires=[
+        "requests",
+        "geojson",
+        "click",
+    ],
     entry_points="""
         [console_scripts]
         nasawildfires=nasa_wildfires.cli:cmd
