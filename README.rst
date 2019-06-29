@@ -8,7 +8,7 @@ Installation
 
 ::
 
-    $ pipenv install nasa_wildfires
+    $ pipenv install nasa-wildfires
 
 
 Command-line usage
@@ -33,12 +33,12 @@ Command-line usage
 
 Download a GeoJSON of hotspots detected by the MODIS satellite in a recent 24-hour period. ::
 
-    $ nasa_wildfires modis
+    $ nasawildfires modis
 
 
 Download a GeoJSON of hotspots detected by the VIIRS satellite in a recent 24-hour period. ::
 
-    $ nasa_wildfires viirs
+    $ nasawildfires viirs
 
 
 Python usage
