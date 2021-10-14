@@ -1,6 +1,7 @@
 import csv
+import geojson
 import requests
-from geojson import Feature, FeatureCollection, Point
+import itertools
 
 
 def get_modis():
@@ -10,9 +11,12 @@ def get_modis():
     Returns GeoJSON.
     """
     base_url = 'https://firms.modaps.eosdis.nasa.gov/data/active_fire/c6/csv/{}'
-    contiguous_url = 'MODIS_C6_USA_contiguous_and_Hawaii_24h.csv'
-    alaska_url = 'MODIS_C6_Alaska_24h.csv'
-    return _download_and_format(base_url, contiguous_url, alaska_url, 'MODIS')
+    url_list = [
+        base_url.format('MODIS_C6_USA_contiguous_and_Hawaii_24h.csv'),
+        base_url.format('MODIS_C6_Alaska_24h.csv')
+    ]
+    features = [_get_features(u) for u in url_list]
+    return geojson.FeatureCollection(list(itertools.chain(features)))
 
 
 def get_viirs():
@@ -22,26 +26,27 @@ def get_viirs():
     Returns GeoJSON.
     """
     base_url = 'https://firms.modaps.eosdis.nasa.gov/data/active_fire/viirs/csv/VNP14IMGTDL_NRT_{}'
-    contiguous_url = 'USA_contiguous_and_Hawaii_24h.csv'
-    alaska_url = 'Alaska_24h.csv'
-    return _download_and_format(base_url, contiguous_url, alaska_url, 'VIIRS')
+    url_list = [
+        base_url.format('USA_contiguous_and_Hawaii_24h.csv'),
+        base_url.format('Alaska_24h.csv')
+    ]
+    features = [_get_features(u) for u in url_list]
+    return geojson.FeatureCollection(list(itertools.chain(features)))
 
 
-def _download_and_format(base_url, contiguous_url, alaska_url, filename):
+def _get_features(url):
     """
     Generic function for downloading data from NASA and formatting to geojson
     """
+    download = requests.get(url)
+    decoded_content = download.content.decode('utf-8')
+    reader = csv.DictReader(decoded_content.splitlines(), delimiter=',')
     features = []
-    with requests.Session() as s:
-        for url in [contiguous_url, alaska_url]:
-            download = s.get(base_url.format(url))
-            decoded_content = download.content.decode('utf-8')
-            cr = csv.DictReader(decoded_content.splitlines(), delimiter=',')
-            for r in cr:
-                features.append(
-                    Feature(
-                        geometry=Point((float(r['longitude']), float(r['latitude']))),
-                        properties=r
-                    )
-                )
-    return FeatureCollection(features)
+    for r in reader:
+        coords = map(float, [r['longitude'], r['latitude']])
+        f = geojson.Feature(
+            geometry=geojson.Point(coords),
+            properties=r
+        )
+        features.append(f)
+    return features

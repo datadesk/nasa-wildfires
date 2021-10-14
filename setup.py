@@ -11,10 +11,11 @@ setup(
     name='nasa-wildfires',
     version='0.0.3',
     description="Download wildfire data from NASA satellites",
-    long_description=read('README.rst'),
-    author='Los Angeles Times Data Desk',
-    author_email='datadesk@latimes.com',
-    url='http://www.github.com/datadesk/nasa-wildfires',
+    long_description=read('README.md'),
+    long_description_content_type='text/markdown',
+    author='Ben Welsh',
+    author_email='b@palewi.re',
+    url='http://www.github.com/palewire/nasa-wildfires',
     license="MIT",
     packages=("nasa_wildfires",),
     install_requires=[
@@ -31,12 +32,13 @@ setup(
         'Programming Language :: Python',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3 :: Only',
         'License :: OSI Approved :: MIT License',
     ],
     project_urls={
-        'Maintainer': 'https://github.com/datadesk',
-        'Source': 'https://github.com/datadesk/nasa-wildfires',
-        'Tracker': 'https://github.com/datadesk/nasa-wildfires/issues'
+        'Maintainer': 'https://github.com/palewire',
+        'Source': 'https://github.com/palewire/nasa-wildfires',
+        'Tracker': 'https://github.com/palewire/nasa-wildfires/issues'
     },
 )
