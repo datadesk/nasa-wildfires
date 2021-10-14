@@ -9,7 +9,7 @@ def read(fname):
 
 setup(
     name='nasa-wildfires',
-    version='0.0.3',
+    version='0.0.4',
     description="Download wildfire data from NASA satellites",
     long_description=read('README.md'),
     long_description_content_type='text/markdown',
@@ -33,6 +33,7 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3 :: Only',
         'License :: OSI Approved :: MIT License',
     ],
