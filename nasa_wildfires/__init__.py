@@ -1,7 +1,6 @@
 import csv
 import geojson
 import requests
-import itertools
 
 
 def get_modis():
@@ -16,7 +15,7 @@ def get_modis():
         base_url.format('MODIS_C6_Alaska_24h.csv')
     ]
     features = [_get_features(u) for u in url_list]
-    return geojson.FeatureCollection(list(itertools.chain(features)))
+    return geojson.FeatureCollection(_flatten(features))
 
 
 def get_viirs():
@@ -31,7 +30,14 @@ def get_viirs():
         base_url.format('Alaska_24h.csv')
     ]
     features = [_get_features(u) for u in url_list]
-    return geojson.FeatureCollection(list(itertools.chain(features)))
+    return geojson.FeatureCollection(_flatten(features))
+
+
+def _flatten(list_of_lists):
+    """
+    Flattens the provided list of lists.
+    """
+    return [val for sublist in list_of_lists for val in sublist]
 
 
 def _get_features(url):
