@@ -7,7 +7,8 @@ test:
 
 scrape:
 	pipenv run nasawildfires modis --indent=2 > data/modis.json
-	pipenv run nasawildfires viirs --indent=2 > data/viirs.json
+	pipenv run nasawildfires viirs-suomi --indent=2 > data/viirs-suomi.json
+	pipenv run nasawildfires viirs-noaa --indent=2 > data/viirs-noaa.json
 
 ship:
 	rm -rf build/
