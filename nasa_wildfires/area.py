@@ -1,15 +1,15 @@
 regions = {
-    "Global":"Global",
-    "Canada":"Canada",
-    "Alaska":"Alaska",
-    "USA-Hawaii":"USA_contiguous_and_Hawaii",
-    "Central-America":"Central_America",
-    "South-America":"South_America",
-    "Europe":"Europe",
-    "North-Central-Africa":"North_and_Central_Africa",
-    "Southern-Africa":"Southern_Africa",
-    "Russia-Asia":"Russia_Asia",
-    "South-Asia":"South_Asia",
-    "SouthEast-Asia":"SouthEast_Asia",
-    "Australia-NewZealand":"Australia_NewZealand"
+    "global":"Global",
+    "canada":"Canada",
+    "alaska":"Alaska",
+    "usa-hawaii":"USA_contiguous_and_Hawaii",
+    "central-america":"Central_America",
+    "south-america":"South_America",
+    "europe":"Europe",
+    "north-central-africa":"Northern_and_Central_Africa",
+    "southern-africa":"Southern_Africa",
+    "russia-asia":"Russia_Asia",
+    "south-asia":"South_Asia",
+    "southeast-asia":"SouthEast_Asia",
+    "australia-newzealand":"Australia_NewZealand"
 }
