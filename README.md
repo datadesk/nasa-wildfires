@@ -23,8 +23,8 @@ Options:
 
 Commands:
   modis  Hotspots detected by the MODIS satellite in a recent 24-hour period
-  viirs_suomi  Hotspots detected by the VIRRS S-NPP satellite in a recent 24-hour period
-  viirs_noaa  Hotspots detected by the VIRRS NOAA-20 satellite in a recent 24-hour period
+  viirs-suomi  Hotspots detected by the VIRRS S-NPP satellite in a recent 24-hour period
+  viirs-noaa  Hotspots detected by the VIRRS NOAA-20 satellite in a recent 24-hour period
 ```
 
 Download a GeoJSON of hotspots detected by the MODIS satellite in a recent 24-hour period.
