@@ -24,8 +24,10 @@ def get_viirs_suomi(region):
     """
     base_url = 'https://firms.modaps.eosdis.nasa.gov/data/active_fire/suomi-npp-viirs-c2/csv/SUOMI_VIIRS_C2_{}_24h.csv'
     url = base_url.format(region)
+    print(url)
     features = _get_features(url)
 
+    
     return geojson.FeatureCollection(features)
 
 
