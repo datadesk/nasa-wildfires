@@ -30,6 +30,7 @@ def viirs_suomi(indent, sort_keys):
     output = geojson.dumps(data, indent=indent, sort_keys=sort_keys)
     click.echo(output)
 
+
 @cmd.command(help="Hotspots detected by the VIIRS satellite (NOAA-20) in a recent 24-hour period")
 @click.option('--indent', default=0, help='Indentation of output')
 @click.option('--sort-keys/--no-sort-keys', default=True, help="Sort the properties keys")
@@ -37,7 +38,6 @@ def viirs_noaa(indent, sort_keys):
     data = get_viirs_noaa()
     output = geojson.dumps(data, indent=indent, sort_keys=sort_keys)
     click.echo(output)
-
 
 
 if __name__ == '__main__':

@@ -20,7 +20,7 @@ def get_modis():
 
 def get_viirs_suomi():
     """
-    Hotspots detected by the VIIRS Suomi-NPP (S-NPP) satellite in a recent 24-hour period. 
+    Hotspots detected by the VIIRS Suomi-NPP (S-NPP) satellite in a recent 24-hour period.
 
     Returns GeoJSON.
     """
@@ -32,9 +32,10 @@ def get_viirs_suomi():
     features = [_get_features(u) for u in url_list]
     return geojson.FeatureCollection(_flatten(features))
 
+
 def get_viirs_noaa():
     """
-    Hotspots detected by the VIIRS NOAA-20 satellite in a recent 24-hour period. 
+    Hotspots detected by the VIIRS NOAA-20 satellite in a recent 24-hour period.
 
     Returns GeoJSON.
     """
