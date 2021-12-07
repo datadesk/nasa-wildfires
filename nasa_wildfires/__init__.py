@@ -3,20 +3,18 @@ import geojson
 import requests
 
 
-def get_modis():
+def get_modis(region="Global"):
     """
     Hotspots detected by the MODIS satellite in a recent 24-hour period.
 
     Returns GeoJSON.
     """
-    base_url = 'https://firms.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/csv/{}'
-    url_list = [
-        base_url.format('MODIS_C6_1_USA_contiguous_and_Hawaii_24h.csv'),
-        base_url.format('MODIS_C6_1_Alaska_24h.csv')
-    ]
-    features = [_get_features(u) for u in url_list]
-    return geojson.FeatureCollection(_flatten(features))
+    base_url = 'https://firms.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/csv/MODIS_C6_1_{}_24h.csv'
+    url = base_url.format(region)
+    features = _get_features(url)
 
+
+    return geojson.FeatureCollection(features)
 
 def get_viirs_suomi():
     """
