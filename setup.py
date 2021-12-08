@@ -10,7 +10,7 @@ def read(fname):
 setup(
     name='nasa-wildfires',
     version='0.0.5',
-    description="Download wildfire data from NASA satellites",
+    description="Download wildfire data from NASA satellites and the Fire Information for Resource Management System (FIRMS)",
     long_description=read('README.md'),
     long_description_content_type='text/markdown',
     author='Ben Welsh',
