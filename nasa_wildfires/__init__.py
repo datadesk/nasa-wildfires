@@ -1,10 +1,10 @@
 import csv
 import geojson
 import requests
-from types import SimpleNamespace 
 from .area import regions
 
 areas = list(regions.keys())
+
 
 def get_modis(region="Global"):
     """
@@ -17,8 +17,8 @@ def get_modis(region="Global"):
     url = base_url.format(name)
     features = _get_features(url)
 
-
     return geojson.FeatureCollection(features)
+
 
 def get_viirs_suomi(region="Global"):
     """
@@ -31,7 +31,6 @@ def get_viirs_suomi(region="Global"):
     url = base_url.format(name)
     features = _get_features(url)
 
-    
     return geojson.FeatureCollection(features)
 
 
@@ -45,8 +44,9 @@ def get_viirs_noaa(region="Global"):
     name = regions[region]
     url = base_url.format(name)
     features = _get_features(url)
-    
+
     return geojson.FeatureCollection(features)
+
 
 def _get_features(url):
     """
