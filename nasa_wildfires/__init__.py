@@ -1,7 +1,10 @@
 import csv
 import geojson
 import requests
+from types import SimpleNamespace 
+from .area import regions
 
+areas = list(regions.keys())
 
 def get_modis(region="Global"):
     """
@@ -10,35 +13,37 @@ def get_modis(region="Global"):
     Returns GeoJSON.
     """
     base_url = 'https://firms.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/csv/MODIS_C6_1_{}_24h.csv'
-    url = base_url.format(region)
+    name = regions[region]
+    url = base_url.format(name)
     features = _get_features(url)
 
 
     return geojson.FeatureCollection(features)
 
-def get_viirs_suomi(region):
+def get_viirs_suomi(region="Global"):
     """
     Hotspots detected by the VIIRS Suomi-NPP (S-NPP) satellite in a recent 24-hour period.
 
     Returns GeoJSON.
     """
     base_url = 'https://firms.modaps.eosdis.nasa.gov/data/active_fire/suomi-npp-viirs-c2/csv/SUOMI_VIIRS_C2_{}_24h.csv'
-    url = base_url.format(region)
-    print(url)
+    name = regions[region]
+    url = base_url.format(name)
     features = _get_features(url)
 
     
     return geojson.FeatureCollection(features)
 
 
-def get_viirs_noaa(region):
+def get_viirs_noaa(region="Global"):
     """
     Hotspots detected by the VIIRS NOAA-20 satellite in a recent 24-hour period.
 
     Returns GeoJSON.
     """
     base_url = 'https://firms.modaps.eosdis.nasa.gov/data/active_fire/noaa-20-viirs-c2/csv/J1_VIIRS_C2_{}_24h.csv'
-    url = base_url.format(region)
+    name = regions[region]
+    url = base_url.format(name)
     features = _get_features(url)
     
     return geojson.FeatureCollection(features)

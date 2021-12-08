@@ -17,8 +17,7 @@ def cmd():
 @click.option('--indent', default=0, help='Indentation of output')
 @click.option('--sort-keys/--no-sort-keys', default=True, help="Sort the properties keys")
 def modis(region,indent, sort_keys):
-    name = area.regions[region]
-    data = get_modis(name)
+    data = get_modis(region)
     output = geojson.dumps(data, indent=indent, sort_keys=sort_keys)
     click.echo(output)
 
@@ -28,8 +27,7 @@ def modis(region,indent, sort_keys):
 @click.option('--indent', default=0, help='Indentation of output')
 @click.option('--sort-keys/--no-sort-keys', default=True, help="Sort the properties keys")
 def viirs_suomi(region, indent, sort_keys):
-    name = area.regions[region]
-    data = get_viirs_suomi(name)
+    data = get_viirs_suomi(region)
     output = geojson.dumps(data, indent=indent, sort_keys=sort_keys)
     click.echo(output)
 
@@ -39,8 +37,7 @@ def viirs_suomi(region, indent, sort_keys):
 @click.option('--indent', default=0, help='Indentation of output')
 @click.option('--sort-keys/--no-sort-keys', default=True, help="Sort the properties keys")
 def viirs_noaa(region, indent, sort_keys):
-    name = area.regions[region]
-    data = get_viirs_noaa(name)
+    data = get_viirs_noaa(region)
     output = geojson.dumps(data, indent=indent, sort_keys=sort_keys)
     click.echo(output)
 
