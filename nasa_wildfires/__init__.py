@@ -6,7 +6,7 @@ from .area import regions
 areas = list(regions.keys())
 
 
-def get_modis(region="Global"):
+def get_modis(region="global"):
     """
     Hotspots detected by the MODIS satellite in a recent 24-hour period.
 
@@ -20,7 +20,7 @@ def get_modis(region="Global"):
     return geojson.FeatureCollection(features)
 
 
-def get_viirs_suomi(region="Global"):
+def get_viirs_suomi(region="global"):
     """
     Hotspots detected by the VIIRS Suomi-NPP (S-NPP) satellite in a recent 24-hour period.
 
@@ -34,7 +34,7 @@ def get_viirs_suomi(region="Global"):
     return geojson.FeatureCollection(features)
 
 
-def get_viirs_noaa(region="Global"):
+def get_viirs_noaa(region="global"):
     """
     Hotspots detected by the VIIRS NOAA-20 satellite in a recent 24-hour period.
 
