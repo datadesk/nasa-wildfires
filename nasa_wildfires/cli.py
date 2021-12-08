@@ -33,8 +33,8 @@ def modis(region, time_range, indent, sort_keys):
     options.TIME_RANGE, case_sensitive=False), help="Time range")
 @click.option('--indent', default=0, help='Indentation of output')
 @click.option('--sort-keys/--no-sort-keys', default=True, help="Sort the properties keys")
-def viirs_suomi(region, indent, sort_keys):
-    data = get_viirs_suomi(region)
+def viirs_suomi(region, time_range, indent, sort_keys):
+    data = get_viirs_suomi(region, time_range)
     output = geojson.dumps(data, indent=indent, sort_keys=sort_keys)
     click.echo(output)
 
@@ -46,8 +46,8 @@ def viirs_suomi(region, indent, sort_keys):
     options.TIME_RANGE, case_sensitive=False), help="Time range")
 @click.option('--indent', default=0, help='Indentation of output')
 @click.option('--sort-keys/--no-sort-keys', default=True, help="Sort the properties keys")
-def viirs_noaa(region, indent, sort_keys):
-    data = get_viirs_noaa(region)
+def viirs_noaa(region, time_range, indent, sort_keys):
+    data = get_viirs_noaa(region, time_range)
     output = geojson.dumps(data, indent=indent, sort_keys=sort_keys)
     click.echo(output)
 
