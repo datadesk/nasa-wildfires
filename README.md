@@ -53,10 +53,15 @@ Import the library.
 >>> import nasa_wildfires
 ```
 
+View list of availalbe regions
+```python
+>>> area.regions.values()
+```
+
 Download a GeoJSON of hotspots detected by the MODIS satellite in a recent 24-hour period. Returns GeoJSON.
 
 ```python
->>> data = nasa_wildfires.get_modis()
+>>> data = nasa_wildfires.get_modis(region)
 ```
 
 Download a GeoJSON of hotspots detected by the VIIRS S-NPP satellite in a recent 24-hour period. Returns GeoJSON.
