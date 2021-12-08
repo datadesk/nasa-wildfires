@@ -16,10 +16,12 @@ def cmd():
 @cmd.command(help="Hotspots detected by the MODIS satellite in a recent 24-hour period")
 @click.option('-r', '--region', default="Global", type=click.Choice(
     options.REGION_DICT.keys(), case_sensitive=False), help="Hotspot region")
+@click.option('-t', '--time-range', default="24h", type=click.Choice(
+    options.TIME_RANGE, case_sensitive=False), help="Time range")
 @click.option('--indent', default=0, help='Indentation of output')
 @click.option('--sort-keys/--no-sort-keys', default=True, help="Sort the properties keys")
-def modis(region, indent, sort_keys):
-    data = get_modis(region)
+def modis(region, time_range, indent, sort_keys):
+    data = get_modis(region, time_range)
     output = geojson.dumps(data, indent=indent, sort_keys=sort_keys)
     click.echo(output)
 
@@ -27,6 +29,8 @@ def modis(region, indent, sort_keys):
 @cmd.command(help="Hotspots detected by the VIIRS satellite (S-NPP) in a recent 24-hour period")
 @click.option('-r', '--region', default="Global", type=click.Choice(
     options.REGION_DICT.keys(), case_sensitive=False), help="Hotspot region")
+@click.option('-t', '--time-range', default="24h", type=click.Choice(
+    options.TIME_RANGE, case_sensitive=False), help="Time range")
 @click.option('--indent', default=0, help='Indentation of output')
 @click.option('--sort-keys/--no-sort-keys', default=True, help="Sort the properties keys")
 def viirs_suomi(region, indent, sort_keys):
@@ -38,6 +42,8 @@ def viirs_suomi(region, indent, sort_keys):
 @cmd.command(help="Hotspots detected by the VIIRS satellite (NOAA-20) in a recent 24-hour period")
 @click.option('-r', '--region', default="Global", type=click.Choice(
     options.REGION_DICT.keys(), case_sensitive=False), help="Hotspot region")
+@click.option('-t', '--time-range', default="24h", type=click.Choice(
+    options.TIME_RANGE, case_sensitive=False), help="Time range")
 @click.option('--indent', default=0, help='Indentation of output')
 @click.option('--sort-keys/--no-sort-keys', default=True, help="Sort the properties keys")
 def viirs_noaa(region, indent, sort_keys):
