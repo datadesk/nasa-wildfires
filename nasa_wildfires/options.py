@@ -13,3 +13,5 @@ REGION_DICT = {
     "southeast-asia": "SouthEast_Asia",
     "australia-newzealand": "Australia_NewZealand"
 }
+
+TIME_RANGE = ["24h", "48h", "7d"]
