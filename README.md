@@ -16,21 +16,26 @@ Usage: nasawildfires [OPTIONS] COMMAND [ARGS]...
   A command-line interface for downloading wildfire data from NASA
   satellites.
 
-  Returns world GeoJSON. For regional GeoJSON see options.
+  Returns world GeoJSON in a recent 24-hour period. For available regions and time ranges, see options.
 
 Options:
   --help  Show this message and exit.
 
 Commands:
-  modis  Hotspots detected by the MODIS satellite in a recent 24-hour period
-  viirs_suomi  Hotspots detected by the VIRRS S-NPP satellite in a recent 24-hour period
-  viirs_noaa  Hotspots detected by the VIRRS NOAA-20 satellite in a recent 24-hour period
+  modis  Hotspots detected by the MODIS satellitel
+  viirs_suomi  Hotspots detected by the VIRRS S-NPP satellite.
+  viirs_noaa  Hotspots detected by the VIRRS NOAA-20 satellite.
 ```
-
 Download a GeoJSON of hotspots detected by the MODIS satellite in a recent 24-hour period.
 
 ```bash
 nasawildfires modis
+```
+
+Download a GeoJSON of hotspots detected by the MODIS satellite for USA and Hawaii in a recent 48-hour period.
+
+```bash
+nasawildfires modis -r usa-hawaii -t 48h
 ```
 
 Download a GeoJSON of hotspots detected by the VIIRS S-NPP satellite in a recent 24-hour period.
@@ -59,6 +64,12 @@ View list of available regions
 ['global', 'canada', 'alaska', 'usa-hawaii', 'central-america', 'south-america', 'europe', 'north-central-africa', 'southern-africa', 'russia-asia', 'south-asia', 'southeast-asia', 'australia-newzealand']
 ```
 
+View list of availabe time ranges
+```python
+>>> nasa_wildfires.TIME_RANGE
+['24h', '48h', '7d']
+```
+
 Download a GeoJSON of hotspots detected by the MODIS satellite in a recent 24-hour period. Returns GeoJSON.
 
 ```python
@@ -69,6 +80,12 @@ Download a regional GeoJSON of hotspots detected by the MODIS satellite in a rec
 
 ```python
 >>> data = nasa_wildfires.get_modis('usa-hawaii')
+```
+
+Download a regional GeoJSON of hotspots detected by the MODIS satellite in a recent 7-day period.
+
+```python
+>>> data = nasa_wildfires.get_modis('usa-hawaii', '7d')
 ```
 
 Download a GeoJSON of hotspots detected by the VIIRS S-NPP satellite in a recent 24-hour period. Returns GeoJSON.
