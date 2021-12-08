@@ -1,4 +1,4 @@
-regions = {
+REGION_DICT = {
     "global": "Global",
     "canada": "Canada",
     "alaska": "Alaska",
