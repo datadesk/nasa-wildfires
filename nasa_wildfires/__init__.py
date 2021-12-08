@@ -16,7 +16,6 @@ def get_modis(region="global"):
     name = regions[region]
     url = base_url.format(name)
     features = _get_features(url)
-
     return geojson.FeatureCollection(features)
 
 
@@ -30,7 +29,6 @@ def get_viirs_suomi(region="global"):
     name = regions[region]
     url = base_url.format(name)
     features = _get_features(url)
-
     return geojson.FeatureCollection(features)
 
 
@@ -44,13 +42,12 @@ def get_viirs_noaa(region="global"):
     name = regions[region]
     url = base_url.format(name)
     features = _get_features(url)
-
     return geojson.FeatureCollection(features)
 
 
 def _get_features(url):
     """
-    Generic function for downloading data from NASA and formatting to geojson
+    Generic function for downloading data from NASA and reformatting as GeoJSON.
     """
     download = requests.get(url)
     decoded_content = download.content.decode('utf-8')
