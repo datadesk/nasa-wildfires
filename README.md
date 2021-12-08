@@ -1,4 +1,4 @@
-Download wildfire data from NASA satellites and the Fire Information for Resource Management System (FIRMS)
+Download wildfire hotspots detected by NASA satellites and the Fire Information for Resource Management System (FIRMS)
 
 Hourly scrapes powered by a GitHub Action are stored in the `data` directory.
 
