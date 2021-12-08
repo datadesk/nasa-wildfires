@@ -1,63 +1,53 @@
 import csv
 import geojson
 import requests
+from .options import REGION_DICT
+
+REGION_LIST = list(REGION_DICT.keys())
 
 
-def get_modis():
+def get_modis(region="global"):
     """
     Hotspots detected by the MODIS satellite in a recent 24-hour period.
 
     Returns GeoJSON.
     """
-    base_url = 'https://firms.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/csv/{}'
-    url_list = [
-        base_url.format('MODIS_C6_1_USA_contiguous_and_Hawaii_24h.csv'),
-        base_url.format('MODIS_C6_1_Alaska_24h.csv')
-    ]
-    features = [_get_features(u) for u in url_list]
-    return geojson.FeatureCollection(_flatten(features))
+    base_url = 'https://firms.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/csv/MODIS_C6_1_{}_24h.csv'
+    name = REGION_DICT[region]
+    url = base_url.format(name)
+    features = _get_features(url)
+    return geojson.FeatureCollection(features)
 
 
-def get_viirs_suomi():
+def get_viirs_suomi(region="global"):
     """
     Hotspots detected by the VIIRS Suomi-NPP (S-NPP) satellite in a recent 24-hour period.
 
     Returns GeoJSON.
     """
-    base_url = 'https://firms.modaps.eosdis.nasa.gov/data/active_fire/suomi-npp-viirs-c2/csv/SUOMI_VIIRS_C2_{}'
-    url_list = [
-        base_url.format('USA_contiguous_and_Hawaii_24h.csv'),
-        base_url.format('Alaska_24h.csv')
-    ]
-    features = [_get_features(u) for u in url_list]
-    return geojson.FeatureCollection(_flatten(features))
+    base_url = 'https://firms.modaps.eosdis.nasa.gov/data/active_fire/suomi-npp-viirs-c2/csv/SUOMI_VIIRS_C2_{}_24h.csv'
+    name = REGION_DICT[region]
+    url = base_url.format(name)
+    features = _get_features(url)
+    return geojson.FeatureCollection(features)
 
 
-def get_viirs_noaa():
+def get_viirs_noaa(region="global"):
     """
     Hotspots detected by the VIIRS NOAA-20 satellite in a recent 24-hour period.
 
     Returns GeoJSON.
     """
-    base_url = 'https://firms.modaps.eosdis.nasa.gov/data/active_fire/noaa-20-viirs-c2/csv/J1_VIIRS_C2_{}'
-    url_list = [
-        base_url.format('USA_contiguous_and_Hawaii_24h.csv'),
-        base_url.format('Alaska_24h.csv')
-    ]
-    features = [_get_features(u) for u in url_list]
-    return geojson.FeatureCollection(_flatten(features))
-
-
-def _flatten(list_of_lists):
-    """
-    Flattens the provided list of lists.
-    """
-    return [val for sublist in list_of_lists for val in sublist]
+    base_url = 'https://firms.modaps.eosdis.nasa.gov/data/active_fire/noaa-20-viirs-c2/csv/J1_VIIRS_C2_{}_24h.csv'
+    name = REGION_DICT[region]
+    url = base_url.format(name)
+    features = _get_features(url)
+    return geojson.FeatureCollection(features)
 
 
 def _get_features(url):
     """
-    Generic function for downloading data from NASA and formatting to geojson
+    Generic function for downloading data from NASA and reformatting as GeoJSON.
     """
     download = requests.get(url)
     decoded_content = download.content.decode('utf-8')
