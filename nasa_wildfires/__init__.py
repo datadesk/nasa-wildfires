@@ -9,7 +9,7 @@ TIME_LIST = TIME_RANGE
 
 def get_modis(region="global", time="24h"):
     """
-    Hotspots detected by the MODIS satellite in a recent 24-hour period.
+    Hotspots detected by the MODIS satellite. Defaults to the world in a recent 24-hour period.
 
     Returns GeoJSON.
     """
@@ -22,11 +22,11 @@ def get_modis(region="global", time="24h"):
 
 def get_viirs_suomi(region="global", time="24h"):
     """
-    Hotspots detected by the VIIRS Suomi-NPP (S-NPP) satellite in a recent 24-hour period.
+    Hotspots detected by the VIIRS Suomi-NPP (S-NPP) satellite. Defaults to the world in a recent 24-hour period.
 
     Returns GeoJSON.
     """
-    base_url = 'https://firms.modaps.eosdis.nasa.gov/data/active_fire/suomi-npp-viirs-c2/csv/SUOMI_VIIRS_C2_{}_{}`p.csv'
+    base_url = 'https://firms.modaps.eosdis.nasa.gov/data/active_fire/suomi-npp-viirs-c2/csv/SUOMI_VIIRS_C2_{}_{}.csv'
     name = REGION_DICT[region]
     url = base_url.format(name, time)
     features = _get_features(url)
@@ -35,7 +35,7 @@ def get_viirs_suomi(region="global", time="24h"):
 
 def get_viirs_noaa(region="global", time="24h"):
     """
-    Hotspots detected by the VIIRS NOAA-20 satellite in a recent 24-hour period.
+    Hotspots detected by the VIIRS NOAA-20 satellite. Defaults to the world in a recent 24-hour period.
 
     Returns GeoJSON.
     """

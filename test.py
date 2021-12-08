@@ -16,7 +16,6 @@ class NasaWildfiresUnitTest(unittest.TestCase):
         get_viirs_suomi()
         for r in options.REGION_DICT.keys():
             for t in options.TIME_RANGE:
-                print (r,t)
                 get_viirs_suomi(r, t)
 
     def test_viirs_noaa(self):
