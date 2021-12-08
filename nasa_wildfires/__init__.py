@@ -3,7 +3,7 @@ import geojson
 import requests
 from .area import regions
 
-areas = list(regions.keys())
+REGION_LIST = list(regions.keys())
 
 
 def get_modis(region="global"):
