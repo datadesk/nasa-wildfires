@@ -16,7 +16,7 @@ Usage: nasawildfires [OPTIONS] COMMAND [ARGS]...
   A command-line interface for downloading wildfire data from NASA
   satellites.
 
-  Returns GeoJSON.
+  Returns wolrd GeoJSON. For regional GeoJSON see options.
 
 Options:
   --help  Show this message and exit.
@@ -55,13 +55,19 @@ Import the library.
 
 View list of availalbe regions
 ```python
->>> area.regions.values()
+>>> nasa_wildfires.areas
 ```
 
 Download a GeoJSON of hotspots detected by the MODIS satellite in a recent 24-hour period. Returns GeoJSON.
 
 ```python
->>> data = nasa_wildfires.get_modis(region)
+>>> data = nasa_wildfires.get_modis()
+```
+
+Download a regional GeoJSON of hotspots detected by the MODIS satellite in a recent 24-hour period.
+
+```python
+>>> data = nasa_wildfires.get_modis('usa-hawaii')
 ```
 
 Download a GeoJSON of hotspots detected by the VIIRS S-NPP satellite in a recent 24-hour period. Returns GeoJSON.
