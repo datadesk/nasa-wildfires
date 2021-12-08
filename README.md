@@ -53,9 +53,10 @@ Import the library.
 >>> import nasa_wildfires
 ```
 
-View list of availalbe regions
+View list of available regions
 ```python
 >>> nasa_wildfires.REGION_LIST
+['global', 'canada', 'alaska', 'usa-hawaii', 'central-america', 'south-america', 'europe', 'north-central-africa', 'southern-africa', 'russia-asia', 'south-asia', 'southeast-asia', 'australia-newzealand']
 ```
 
 Download a GeoJSON of hotspots detected by the MODIS satellite in a recent 24-hour period. Returns GeoJSON.
