@@ -79,13 +79,13 @@ Download a GeoJSON of hotspots detected by the MODIS satellite in a recent 24-ho
 Download a regional GeoJSON of hotspots detected by the MODIS satellite in a recent 24-hour period.
 
 ```python
->>> data = nasa_wildfires.get_modis('usa-hawaii')
+>>> data = nasa_wildfires.get_modis(region='usa-hawaii')
 ```
 
 Download a regional GeoJSON of hotspots detected by the MODIS satellite in a recent 7-day period.
 
 ```python
->>> data = nasa_wildfires.get_modis('usa-hawaii', '7d')
+>>> data = nasa_wildfires.get_modis(region='usa-hawaii', time_range='7d')
 ```
 
 Download a GeoJSON of hotspots detected by the VIIRS S-NPP satellite in a recent 24-hour period. Returns GeoJSON.
