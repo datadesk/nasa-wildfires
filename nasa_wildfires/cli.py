@@ -17,7 +17,7 @@ def cmd():
 @click.option('-r', '--region', default="Global", type=click.Choice(
     options.REGION_DICT.keys(), case_sensitive=False), help="Hotspot region")
 @click.option('-t', '--time-range', default="24h", type=click.Choice(
-    options.TIME_RANGE, case_sensitive=False), help="Time range")
+    options.TIME_RANGE_DICT, case_sensitive=False), help="Time range")
 @click.option('--indent', default=0, help='Indentation of output')
 @click.option('--sort-keys/--no-sort-keys', default=True, help="Sort the properties keys")
 def modis(region, time_range, indent, sort_keys):
@@ -30,7 +30,7 @@ def modis(region, time_range, indent, sort_keys):
 @click.option('-r', '--region', default="Global", type=click.Choice(
     options.REGION_DICT.keys(), case_sensitive=False), help="Hotspot region")
 @click.option('-t', '--time-range', default="24h", type=click.Choice(
-    options.TIME_RANGE, case_sensitive=False), help="Time range")
+    options.TIME_RANGE_LIST, case_sensitive=False), help="Time range")
 @click.option('--indent', default=0, help='Indentation of output')
 @click.option('--sort-keys/--no-sort-keys', default=True, help="Sort the properties keys")
 def viirs_suomi(region, time_range, indent, sort_keys):
@@ -43,7 +43,7 @@ def viirs_suomi(region, time_range, indent, sort_keys):
 @click.option('-r', '--region', default="Global", type=click.Choice(
     options.REGION_DICT.keys(), case_sensitive=False), help="Hotspot region")
 @click.option('-t', '--time-range', default="24h", type=click.Choice(
-    options.TIME_RANGE, case_sensitive=False), help="Time range")
+    options.TIME_RANGE_LIST, case_sensitive=False), help="Time range")
 @click.option('--indent', default=0, help='Indentation of output')
 @click.option('--sort-keys/--no-sort-keys', default=True, help="Sort the properties keys")
 def viirs_noaa(region, time_range, indent, sort_keys):
