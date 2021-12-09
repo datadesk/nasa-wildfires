@@ -1,7 +1,7 @@
 import csv
 import geojson
 import requests
-from .options import REGION_DICT, TIME_RANGE_LIST
+from .options import REGION_DICT
 
 REGION_LIST = list(REGION_DICT.keys())
 
