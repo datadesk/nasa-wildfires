@@ -1,10 +1,9 @@
 import csv
 import geojson
 import requests
-from .options import REGION_DICT, TIME_RANGE
+from .options import REGION_DICT, TIME_RANGE_LIST
 
 REGION_LIST = list(REGION_DICT.keys())
-TIME_LIST = TIME_RANGE
 
 
 def get_modis(region="global", time_range="24h"):

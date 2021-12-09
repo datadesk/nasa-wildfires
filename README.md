@@ -66,7 +66,7 @@ View list of available regions
 
 View list of availabe time ranges
 ```python
->>> nasa_wildfires.TIME_RANGE
+>>> nasa_wildfires.TIME_RANGE_LIST
 ['24h', '48h', '7d']
 ```
 
