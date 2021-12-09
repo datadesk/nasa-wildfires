@@ -13,9 +13,9 @@ setup(
     description="Download wildfire hotspots detected by NASA satellites and the Fire Information for Resource Management System (FIRMS)",
     long_description=read('README.md'),
     long_description_content_type='text/markdown',
-    author='Ben Welsh',
-    author_email='b@palewi.re',
-    url='http://www.github.com/palewire/nasa-wildfires',
+    author='Los Angeles Times Data and Graphics Department',
+    author_email='datagraphics@caltimes.com',
+    url='http://www.github.com/datadesk/nasa-wildfires',
     license="MIT",
     packages=("nasa_wildfires",),
     install_requires=[
@@ -38,8 +38,8 @@ setup(
         'License :: OSI Approved :: MIT License',
     ],
     project_urls={
-        'Maintainer': 'https://github.com/palewire',
-        'Source': 'https://github.com/palewire/nasa-wildfires',
-        'Tracker': 'https://github.com/palewire/nasa-wildfires/issues'
+        'Maintainer': 'https://github.com/datadesk',
+        'Source': 'https://github.com/datadesk/nasa-wildfires',
+        'Tracker': 'https://github.com/datadesk/nasa-wildfires/issues'
     },
 )
