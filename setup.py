@@ -9,7 +9,7 @@ def read(fname):
 
 setup(
     name='nasa-wildfires',
-    version='0.0.5',
+    version='1.0.5',
     description="Download wildfire hotspots detected by NASA satellites and the Fire Information for Resource Management System (FIRMS)",
     long_description=read('README.md'),
     long_description_content_type='text/markdown',
