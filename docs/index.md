@@ -3,7 +3,7 @@
 
 # nasa-wildfires
 
-Download wildfire hotspots detected by NASA satellites and the Fire Information for Resource Management System (FIRMS)
+Download wildfire hotspots detected by NASA satellites and the [Fire Information for Resource Management System (FIRMS)](https://firms.modaps.eosdis.nasa.gov/active_fire/)
 
 ## Installation
 
