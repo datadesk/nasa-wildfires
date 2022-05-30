@@ -46,7 +46,7 @@ setup(
     long_description_content_type="text/markdown",
     author="Ben Welsh",
     author_email="b@palewi.re",
-    url="http://www.github.com/datadesk/nasa-wildfires",
+    url="https://palewi.re/docs/nasa-wildfires/",
     license="MIT",
     packages=("nasa_wildfires",),
     install_requires=[
