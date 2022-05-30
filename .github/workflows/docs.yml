@@ -26,4 +26,4 @@ jobs:
         aws_secret_access_key: ${{ secrets.PALEWIRE_DOCS_AWS_SECRET_ACCESS_KEY }}
         aws_bucket: ${{ secrets.PALEWIRE_DOCS_AWS_BUCKET }}
         source_dir: docs/_build/html/
-        destination_dir: inciweb-wildfires
+        destination_dir: nasa-wildfires
