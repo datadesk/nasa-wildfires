@@ -19,7 +19,7 @@ def cmd():
     "-r",
     "--region",
     default="Global",
-    type=click.Choice(options.REGION_DICT.keys(), case_sensitive=False),
+    type=click.Choice(list(options.REGION_DICT.keys()), case_sensitive=False),
     help="Hotspot region",
 )
 @click.option(
@@ -46,7 +46,7 @@ def modis(region, time_range, indent, sort_keys):
     "-r",
     "--region",
     default="Global",
-    type=click.Choice(options.REGION_DICT.keys(), case_sensitive=False),
+    type=click.Choice(list(options.REGION_DICT.keys()), case_sensitive=False),
     help="Hotspot region",
 )
 @click.option(
@@ -73,7 +73,7 @@ def viirs_suomi(region, time_range, indent, sort_keys):
     "-r",
     "--region",
     default="Global",
-    type=click.Choice(options.REGION_DICT.keys(), case_sensitive=False),
+    type=click.Choice(list(options.REGION_DICT.keys()), case_sensitive=False),
     help="Hotspot region",
 )
 @click.option(
