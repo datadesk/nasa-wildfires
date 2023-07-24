@@ -1,4 +1,5 @@
 name: Scrape
+
 on:
   workflow_dispatch:
   schedule:
@@ -13,13 +14,15 @@ jobs:
         name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install pipenv
-        run: pipx install pipenv
-
-      - uses: actions/setup-python@v3
+      - uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          python-version: '3.10'
           cache: 'pipenv'
+
+      - id: install-pipenv
+        name: Install pipenv
+        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
+        shell: bash
 
       - id: make
         name: Run scrape command
@@ -28,8 +31,6 @@ jobs:
           pipenv run nasawildfires modis --indent=2 > data/modis.json
           pipenv run nasawildfires viirs-suomi --indent=2 > data/viirs-suomi.json
           pipenv run nasawildfires viirs-noaa --indent=2 > data/viirs-noaa.json
-        env:
-          AIRNOW_KEYS: ${{ secrets.AIRNOW_KEYS }}
         shell: bash
 
       - id: commit
