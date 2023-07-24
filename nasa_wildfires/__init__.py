@@ -8,7 +8,9 @@ from .options import REGION_DICT
 REGION_LIST = list(REGION_DICT.keys())
 
 
-def get_modis(region: str = "global", time_range: str = "24h") -> geojson.FeatureCollection:
+def get_modis(
+    region: str = "global", time_range: str = "24h"
+) -> geojson.FeatureCollection:
     """
     Hotspots detected by the MODIS satellite. Defaults to the world in a recent 24-hour period.
 
@@ -21,7 +23,9 @@ def get_modis(region: str = "global", time_range: str = "24h") -> geojson.Featur
     return geojson.FeatureCollection(features)
 
 
-def get_viirs_suomi(region: str = "global", time_range: str = "24h") -> geojson.FeatureCollection:
+def get_viirs_suomi(
+    region: str = "global", time_range: str = "24h"
+) -> geojson.FeatureCollection:
     """
     Hotspots detected by the VIIRS Suomi-NPP (S-NPP) satellite. Defaults to the world in a recent 24-hour period.
 
@@ -34,7 +38,9 @@ def get_viirs_suomi(region: str = "global", time_range: str = "24h") -> geojson.
     return geojson.FeatureCollection(features)
 
 
-def get_viirs_noaa(region: str = "global", time_range: str = "24h") -> geojson.FeatureCollection:
+def get_viirs_noaa(
+    region: str = "global", time_range: str = "24h"
+) -> geojson.FeatureCollection:
     """
     Hotspots detected by the VIIRS NOAA-20 satellite. Defaults to the world in a recent 24-hour period.
 

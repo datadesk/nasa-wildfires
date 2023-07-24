@@ -9,6 +9,8 @@ flake8 = "*"
 sphinx = "*"
 setuptools-scm = "*"
 pre-commit = "*"
+mypy = "*"
+types-requests = "*"
 
 [packages]
 requests = "*"

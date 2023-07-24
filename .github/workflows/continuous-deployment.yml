@@ -29,12 +29,42 @@ jobs:
         name: Run
         run: pipenv run flake8 nasa_wildfires
 
+  mypy-python:
+    name: Static-types check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - id: setup-python
+        name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pipenv'
+
+      - id: install-pipenv
+        name: Install pipenv
+        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
+        shell: bash
+
+      - id: install-python-dependencies
+        name: Install Python dependencies
+        run: pipenv sync --dev
+        shell: bash
+
+      - id: mypy
+        name: Run mypy
+        run: pipenv run mypy ./nasa_wildfires --ignore-missing-imports --verbose
+        shell: bash
+
   test-python:
     strategy:
       matrix:
         python: ['3.8', '3.9', '3.10', '3.11']
     name: Test
     runs-on: ubuntu-latest
+    needs: [lint-python, mypy-python]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
