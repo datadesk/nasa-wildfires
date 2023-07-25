@@ -16,7 +16,7 @@ def get_modis(
 
     Returns GeoJSON.
     """
-    base_url = "https://firms.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/csv/MODIS_C6_1_{}_{}.csv"
+    base_url = "https://firms2.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/csv/MODIS_C6_1_{}_{}.csv"
     name = REGION_DICT[region]
     url = base_url.format(name, time_range)
     features = _get_features(url)
@@ -31,7 +31,7 @@ def get_viirs_suomi(
 
     Returns GeoJSON.
     """
-    base_url = "https://firms.modaps.eosdis.nasa.gov/data/active_fire/suomi-npp-viirs-c2/csv/SUOMI_VIIRS_C2_{}_{}.csv"
+    base_url = "https://firms2.modaps.eosdis.nasa.gov/data/active_fire/suomi-npp-viirs-c2/csv/SUOMI_VIIRS_C2_{}_{}.csv"
     name = REGION_DICT[region]
     url = base_url.format(name, time_range)
     features = _get_features(url)
@@ -46,7 +46,7 @@ def get_viirs_noaa(
 
     Returns GeoJSON.
     """
-    base_url = "https://firms.modaps.eosdis.nasa.gov/data/active_fire/noaa-20-viirs-c2/csv/J1_VIIRS_C2_{}_{}.csv"
+    base_url = "https://firms2.modaps.eosdis.nasa.gov/data/active_fire/noaa-20-viirs-c2/csv/J1_VIIRS_C2_{}_{}.csv"
     name = REGION_DICT[region]
     url = base_url.format(name, time_range)
     features = _get_features(url)
