@@ -12,6 +12,7 @@ pre-commit = "*"
 mypy = "*"
 types-requests = "*"
 rich = "*"
+types-retry = "*"
 
 [packages]
 requests = "*"
