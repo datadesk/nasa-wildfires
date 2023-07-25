@@ -20,6 +20,11 @@ def get_modis(
 
     Defaults to the world in a recent 24-hour period.
 
+    Args:
+        region: The region to download. Defaults to "global".
+        time_range: The time range to download. Defaults to "24h".
+        verbose: Print verbose output. Defaults to False.
+
     Returns GeoJSON.
     """
     name = REGION_DICT[region]
@@ -34,6 +39,11 @@ def get_viirs_suomi(
     """Hotspots detected by the VIIRS Suomi-NPP (S-NPP) satellite.
 
     Defaults to the world in a recent 24-hour period.
+
+    Args:
+        region: The region to download. Defaults to "global".
+        time_range: The time range to download. Defaults to "24h".
+        verbose: Print verbose output. Defaults to False.
 
     Returns GeoJSON.
     """
@@ -60,7 +70,14 @@ def get_viirs_noaa(
 
 @retry((AssertionError), delay=4, tries=3, backoff=2, jitter=1)
 def _get_features(csv_path: str, verbose: bool = False) -> list[geojson.Feature]:
-    """Download CSV hotspots CSVs from NASA and reformat as GeoJSON."""
+    """Download CSV hotspots CSVs from NASA and reformat as GeoJSON.
+
+    Args:
+        csv_path: The path to the CSV file to download.
+        verbose: Print verbose output. Defaults to False.
+
+    Returns GeoJSON.
+    """
     domain_list = [
         "firms.modaps.eosdis.nasa.gov",
         "firms2.modaps.eosdis.nasa.gov",
