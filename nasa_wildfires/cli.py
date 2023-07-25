@@ -33,8 +33,9 @@ def cmd():
 @click.option(
     "--sort-keys/--no-sort-keys", default=True, help="Sort the properties keys"
 )
-def modis(region, time_range, indent, sort_keys):
-    data = get_modis(region, time_range)
+@click.option("--verbose", is_flag=True, help="Print verbose output")
+def modis(region, time_range, indent, sort_keys, verbose):
+    data = get_modis(region, time_range, verbose)
     output = geojson.dumps(data, indent=indent, sort_keys=sort_keys)
     click.echo(output)
 
@@ -60,8 +61,9 @@ def modis(region, time_range, indent, sort_keys):
 @click.option(
     "--sort-keys/--no-sort-keys", default=True, help="Sort the properties keys"
 )
-def viirs_suomi(region, time_range, indent, sort_keys):
-    data = get_viirs_suomi(region, time_range)
+@click.option("--verbose", is_flag=True, help="Print verbose output")
+def viirs_suomi(region, time_range, indent, sort_keys, verbose):
+    data = get_viirs_suomi(region, time_range, verbose)
     output = geojson.dumps(data, indent=indent, sort_keys=sort_keys)
     click.echo(output)
 
@@ -87,8 +89,9 @@ def viirs_suomi(region, time_range, indent, sort_keys):
 @click.option(
     "--sort-keys/--no-sort-keys", default=True, help="Sort the properties keys"
 )
-def viirs_noaa(region, time_range, indent, sort_keys):
-    data = get_viirs_noaa(region, time_range)
+@click.option("--verbose", is_flag=True, help="Print verbose output")
+def viirs_noaa(region, time_range, indent, sort_keys, verbose):
+    data = get_viirs_noaa(region, time_range, verbose)
     output = geojson.dumps(data, indent=indent, sort_keys=sort_keys)
     click.echo(output)
 
