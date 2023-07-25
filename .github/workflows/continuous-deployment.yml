@@ -81,7 +81,7 @@ jobs:
 
       - id: pipenv-install
         name: Install Python dependencies
-        run: pipenv install --skip-lock --python `which python`
+        run: pipenv install --skip-lock --dev --python `which python`
         shell: bash
 
       - id: run
