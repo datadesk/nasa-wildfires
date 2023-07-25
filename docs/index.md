@@ -95,31 +95,31 @@ nasa_wildfires.TIME_RANGE_LIST
 Download a GeoJSON of hotspots detected by the MODIS satellite in a recent 24-hour period. Returns GeoJSON.
 
 ```python
-data = nasa_wildfires.get_modis()
+nasa_wildfires.get_modis()
 ```
 
 Download a regional GeoJSON of hotspots detected by the MODIS satellite in a recent 24-hour period.
 
 ```python
-data = nasa_wildfires.get_modis(region="usa-hawaii")
+nasa_wildfires.get_modis(region="usa-hawaii")
 ```
 
 Download a regional GeoJSON of hotspots detected by the MODIS satellite in a recent 7-day period.
 
 ```python
-data = nasa_wildfires.get_modis(region="usa-hawaii", time_range="7d")
+nasa_wildfires.get_modis(region="usa-hawaii", time_range="7d")
 ```
 
 Download a GeoJSON of hotspots detected by the VIIRS S-NPP satellite in a recent 24-hour period. Returns GeoJSON.
 
 ```python
-data = nasa_wildfires.get_viirs_suomi()
+nasa_wildfires.get_viirs_suomi()
 ```
 
 Download a GeoJSON of hotspots detected by the VIIRS NOAA-20 satellite in a recent 24-hour period. Returns GeoJSON.
 
 ```python
-data = nasa_wildfires.get_viirs_noaa()
+nasa_wildfires.get_viirs_noaa()
 ```
 
 ## Contributing
