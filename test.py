@@ -8,7 +8,9 @@ from rich import print
 
 from nasa_wildfires import get_modis, get_viirs_noaa, get_viirs_suomi, options
 
-COMBO_LIST = list(itertools.product(options.REGION_DICT.keys(), options.TIME_RANGE_LIST))
+COMBO_LIST = list(
+    itertools.product(options.REGION_DICT.keys(), options.TIME_RANGE_LIST)
+)
 
 
 class NasaWildfiresUnitTest(unittest.TestCase):

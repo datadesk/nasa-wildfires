@@ -86,9 +86,9 @@ def _get_features(csv_path: str, verbose: bool = False) -> list[geojson.Feature]
 
     # Convert to GeoJSON
     features = []
-    for r in reader:
-        coords = map(float, [r["longitude"], r["latitude"]])
-        f = geojson.Feature(geometry=geojson.Point(coords), properties=r)
+    for row in reader:
+        coords = map(float, [row["longitude"], row["latitude"]])
+        f = geojson.Feature(geometry=geojson.Point(coords), properties=row)
         features.append(f)
 
     # Return the GeoJSON feature list
