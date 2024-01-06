@@ -1,4 +1,4 @@
-### Links
+### Other resources
 
 * Docs: [palewi.re/docs/nasa-wildfires/](https://palewi.re/docs/nasa-wildfires/)
 * Issues: [github.com/datadesk/nasa-wildfires/issues](https://github.com/datadesk/nasa-wildfires/issues)
