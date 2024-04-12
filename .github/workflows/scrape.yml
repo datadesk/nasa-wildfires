@@ -12,11 +12,11 @@ jobs:
     steps:
       - id: checkout
         name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.11'
           cache: 'pipenv'
 
       - id: install-pipenv
@@ -24,13 +24,20 @@ jobs:
         run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
         shell: bash
 
+      - name: Setup
+        run: pipenv run python setup.py install
+        shell: bash
+
       - id: make
         name: Run scrape command
         run: |
-          pipenv run python setup.py install
           pipenv run nasawildfires modis --indent=2 > data/modis.json
           pipenv run nasawildfires viirs-suomi --indent=2 > data/viirs-suomi.json
           pipenv run nasawildfires viirs-noaa --indent=2 > data/viirs-noaa.json
+        shell: bash
+
+      - name: Datestamp
+        run: date > data/timestamp.txt
         shell: bash
 
       - id: commit
@@ -41,6 +48,6 @@ jobs:
           git config pull.rebase false
           git status
           git pull origin $GITHUB_REF
-          git add ./
+          git add ./data
           git commit -m "Scrape" && git push || true
         shell: bash
