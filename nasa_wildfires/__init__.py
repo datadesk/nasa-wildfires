@@ -1,4 +1,5 @@
 """Methods for downloading and processing wildfire data from NASA FIRMS."""
+
 from __future__ import annotations
 
 import csv
