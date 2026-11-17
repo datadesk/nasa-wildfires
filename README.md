@@ -38,6 +38,7 @@ print(records[0].acquired_at, records[0].frp)
 * **Downloads retry.** A request waits 60 seconds, then tries again on network errors and server errors, and raises `nasa_wildfires.NASAError` if it still fails.
 * **The data comes from NASA.** It is shared under NASA's full and open data policy and is provided "as is". The code is MIT.
 * **Acknowledge NASA.** NASA asks you to include its FIRMS acknowledgement when you share the data. The text is in the documentation.
+* **AI helped write this package.** AI tools assisted in writing its code, tests and documentation. A person directed and reviewed the work.
 
 The documentation has the full field reference, the list of regions and the acknowledgement text.
 
