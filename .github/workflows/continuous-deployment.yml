@@ -49,7 +49,7 @@ jobs:
   test-python:
     strategy:
       matrix:
-        python: ['3.11', '3.12', '3.13']
+        python: ['3.11', '3.12', '3.13', '3.14']
     name: Test
     runs-on: ubuntu-latest
     needs: [lint-python, type-check-python]

@@ -224,6 +224,10 @@ The text comes from [NASA's FIRMS page](https://www.earthdata.nasa.gov/data/tool
 
 NASA supports full and open sharing of its data. The data is provided "as is", and users bear all responsibility and liability for their use of it. Read the disclaimer on [NASA's FIRMS page](https://www.earthdata.nasa.gov/data/tools/firms) before you publish anything built on it. This package only downloads the data. It is not made by NASA and is not endorsed by NASA.
 
+## About this package
+
+AI tools assisted in writing this package's code, tests and documentation. A person directed and reviewed the work.
+
 ## Contributing
 
 Install dependencies for development.

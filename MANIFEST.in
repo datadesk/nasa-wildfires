@@ -5,5 +5,9 @@ include .pre-commit-config.yaml
 include .python-version
 include uv.lock
 include Makefile
+include nasa_wildfires/py.typed
 recursive-include docs *.md *.py Makefile
 recursive-include tests *.py
+recursive-include tests *.csv
+prune data
+prune docs/_build
