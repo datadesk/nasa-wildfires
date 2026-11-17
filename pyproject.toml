@@ -1,0 +1,82 @@
+[build-system]
+requires = ["setuptools>=77", "setuptools_scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nasa-wildfires"
+dynamic = ["version"]
+requires-python = ">=3.11"
+dependencies = [
+    "click",
+    "geojson",
+    "requests",
+    "retry",
+]
+authors = [{ name = "Ben Welsh", email = "b@palewi.re" }]
+description = "Download wildfire hotspots detected by NASA satellites and the Fire Information for Resource Management System (FIRMS)"
+keywords = ["wildfires", "nasa", "firms", "geojson", "data"]
+license = "MIT"
+license-files = ["LICENSE"]
+readme = "README.md"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Programming Language :: Python",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+
+[project.urls]
+Documentation = "https://palewi.re/docs/nasa-wildfires/"
+Source = "https://github.com/datadesk/nasa-wildfires"
+Issues = "https://github.com/datadesk/nasa-wildfires/issues"
+
+[project.scripts]
+nasawildfires = "nasa_wildfires.cli:cmd"
+
+[dependency-groups]
+dev = [
+    "pre-commit",
+    "ruff",
+    "setuptools-scm",
+    "twine",
+    "ty",
+]
+test = [
+    "pytest",
+]
+docs = [
+    "myst-parser",
+    "sphinx",
+    "sphinx-autobuild",
+    "sphinx-palewire-theme",
+]
+
+[tool.setuptools]
+packages = ["nasa_wildfires"]
+
+[tool.setuptools_scm]
+
+[tool.ruff]
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "B", "W", "I", "UP"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["--strict-markers", "-m", "not live"]
+markers = [
+    "live: talks to the real NASA website, so it can be slow or fail when NASA is down",
+]
+
+[tool.ty.environment]
+python-version = "3.11"
+
+[tool.ty.src]
+include = ["nasa_wildfires"]
