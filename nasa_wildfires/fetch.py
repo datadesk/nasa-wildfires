@@ -6,6 +6,7 @@ import csv
 import random
 import sys
 import time
+from typing import Protocol
 
 import requests
 
@@ -27,11 +28,53 @@ RETRY_STATUS_CODES = frozenset({408, 429})
 """Statuses worth another try. Every 5xx status is also worth another try."""
 
 
+class Reply(Protocol):
+    """What a request function must hand back: a status code and the file's bytes.
+
+    A ``requests.Response`` fits this.
+    """
+
+    @property
+    def status_code(self) -> int:
+        """The web status, such as 200 or 404."""
+        ...
+
+    @property
+    def content(self) -> bytes:
+        """The body of the reply, as bytes."""
+        ...
+
+
+class Fetcher(Protocol):
+    """A function that makes a web request for this package.
+
+    Pass one as ``get`` to add retries, logging or custom headers. ``requests.get``
+    fits this, and is the default.
+
+    Examples:
+        >>> import requests
+        >>> fetcher: Fetcher = requests.get
+    """
+
+    def __call__(self, url: str, *, timeout: float) -> Reply:
+        """Request a web address.
+
+        Args:
+            url: The address to request.
+            timeout: The seconds to wait before giving up.
+
+        Returns:
+            The reply.
+        """
+        ...
+
+
 def download_rows(
     csv_path: str,
     verbose: bool = False,
     timeout: float = DEFAULT_TIMEOUT,
     tries: int = DEFAULT_TRIES,
+    get: Fetcher | None = None,
 ) -> list[dict[str, str]]:
     """Download one of NASA's hotspot CSV files and read its rows.
 
@@ -47,6 +90,11 @@ def download_rows(
         verbose: Print each request to standard error. Defaults to False.
         timeout: Seconds to wait for NASA on each try. Defaults to 60.
         tries: How many tries to make in all. Defaults to 4.
+        get: A function that makes the web request, such as ``requests.get``
+            (the default). It is called as ``get(url, timeout=seconds)`` and
+            must return something with ``status_code`` and ``content``. Its
+            ``requests`` errors are retried like the default's. Any other error
+            it raises is passed on untouched.
 
     Returns:
         One dictionary of column names to text for each row. A file with only a
@@ -62,7 +110,11 @@ def download_rows(
         >>> rows = download_rows(
         ...     "noaa-21-viirs-c2/csv/J2_VIIRS_C2_Global_7d.csv", timeout=120, tries=2
         ... )
+        >>> rows = download_rows(
+        ...     "modis-c6.1/csv/MODIS_C6_1_Alaska_24h.csv", get=my_get
+        ... )
     """
+    fetch: Fetcher = get or requests.get
     start = random.randrange(len(DOMAINS))
     problem = None
     for attempt in range(max(tries, 1)):
@@ -73,7 +125,7 @@ def download_rows(
         if verbose:
             print(f"Requesting {url}", file=sys.stderr)
         try:
-            response = requests.get(url, timeout=timeout)
+            response = fetch(url, timeout=timeout)
         except (requests.ConnectionError, requests.Timeout) as error:
             problem = NASAError(f"Could not reach NASA at {url}: {error}", url=url)
             continue
@@ -86,7 +138,7 @@ def download_rows(
                 f"NASA sent back status {status} for {url}", url=url, status_code=status
             )
             continue
-        if not response.ok:
+        if status >= 400:
             raise NASAError(
                 f"NASA sent back status {status} for {url}", url=url, status_code=status
             )
