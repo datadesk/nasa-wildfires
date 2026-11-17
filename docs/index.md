@@ -192,6 +192,27 @@ except nasa_wildfires.NASAError as error:
     print(error)
 ```
 
+### Use your own request function
+
+Some projects send every web request through their own helper, for shared retries, logging or proxy settings. Pass that helper as `get` and the package will use it instead of `requests.get`. It is called like `get(url, timeout=seconds)` and must return something with a `status_code` and the file's `content` as bytes. The timeout, the retries and the switching between NASA's two domains all still work, and failures still raise `NASAError`.
+
+```python
+import requests
+
+import nasa_wildfires
+from nasa_wildfires import Reply
+
+
+def my_get(url: str, *, timeout: float) -> Reply:
+    print("Asking for", url)
+    return requests.get(url, timeout=timeout, headers={"User-Agent": "my-project"})
+
+
+data = nasa_wildfires.get_hotspots("modis", get=my_get)
+```
+
+The `Fetcher` and `Reply` types describe this, so a type checker can confirm your function fits. If your function raises one of the `requests` library's errors, such as a timeout, the package tries again just as it does for its own requests. Any other error is passed on to you.
+
 ## Field reference
 
 These are the columns NASA publishes, with the matching `Hotspot` field. MODIS and VIIRS use slightly different columns.
