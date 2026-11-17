@@ -96,7 +96,9 @@ def _get_features(csv_path: str, verbose: bool = False) -> list[geojson.Feature]
     try:
         assert r.ok
     except AssertionError:
-        raise AssertionError(f"Request failed with status code {r.status_code}")
+        raise AssertionError(
+            f"Request failed with status code {r.status_code}"
+        ) from None
 
     # Read in the CSV
     decoded_content = r.content.decode("utf-8")

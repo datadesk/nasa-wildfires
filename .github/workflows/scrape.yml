@@ -14,26 +14,23 @@ jobs:
         name: Checkout
         uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - id: install-uv
+        name: Install uv
+        uses: astral-sh/setup-uv@v6
         with:
-          python-version: '3.11'
-          cache: 'pipenv'
-
-      - id: install-pipenv
-        name: Install pipenv
-        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
-        shell: bash
+          enable-cache: true
+          cache-dependency-glob: 'uv.lock'
 
       - name: Setup
-        run: pipenv run python setup.py install
+        run: uv sync
         shell: bash
 
       - id: make
         name: Run scrape command
         run: |
-          pipenv run nasawildfires modis --indent=2 > data/modis.json
-          pipenv run nasawildfires viirs-suomi --indent=2 > data/viirs-suomi.json
-          pipenv run nasawildfires viirs-noaa --indent=2 > data/viirs-noaa.json
+          uv run nasawildfires modis --indent=2 > data/modis.json
+          uv run nasawildfires viirs-suomi --indent=2 > data/viirs-suomi.json
+          uv run nasawildfires viirs-noaa --indent=2 > data/viirs-noaa.json
         shell: bash
 
       - name: Datestamp

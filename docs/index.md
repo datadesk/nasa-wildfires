@@ -10,7 +10,7 @@ Download wildfire hotspots detected by NASA satellites and the [Fire Information
 ## Installation
 
 ```bash
-pipenv install nasa-wildfires
+uv add nasa-wildfires
 ```
 
 ## Command-line usage
@@ -124,21 +124,23 @@ nasa_wildfires.get_viirs_noaa()
 Install dependencies for development.
 
 ```bash
-pipenv install --dev
+uv sync --all-groups
 ```
 
-Run tests.
+Run the offline tests, the linter and the type checker.
 
 ```bash
-pipenv run python test.py
+make check
 ```
+
+The tests that call NASA's real website are skipped by default. Run them with `make test-live`.
 
 ## Developing the CLI
 
-The command-line interface is implemented using Click and setuptools. To install it locally for development inside your virtual environment, run the following installation command, as [prescribed by the Click documentation](https://click.palletsprojects.com/en/7.x/setuptools/#setuptools-integration).
+The command-line interface is implemented using Click. `uv sync` installs the package in editable form, so the `nasawildfires` command is ready to use with `uv run`.
 
 ```bash
-pip install --editable .
+uv run nasawildfires --help
 ```
 
 ## Other resources

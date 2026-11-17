@@ -2,6 +2,7 @@ name: "Build documentation"
 
 on:
   push:
+  pull_request:
   workflow_dispatch:
 
 jobs:
@@ -13,32 +14,27 @@ jobs:
         name: Checkout
         uses: actions/checkout@v4
 
-      - id: setup-python
-        name: Setup Python
-        uses: actions/setup-python@v5
+      - id: install-uv
+        name: Install uv
+        uses: astral-sh/setup-uv@v6
         with:
-          python-version: '3.11'
-          cache: 'pipenv'
-
-      - id: install-pipenv
-        name: Install pipenv
-        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
-        shell: bash
+          enable-cache: true
+          cache-dependency-glob: 'uv.lock'
 
       - id: install-python-dependencies
         name: Install Python dependencies
-        run: pipenv sync --dev
+        run: uv sync --group docs
         shell: bash
 
       - id: build-sphinx-documentation
         name: Build Sphinx documentation
-        run: pipenv run make html
+        run: uv run make html
         shell: bash
         working-directory: docs
 
       - id: upload-release-candidate
         name: Upload release candidate
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: release-candidate
           path: ./docs/_build/html/
@@ -50,7 +46,7 @@ jobs:
     if: ${{ github.ref_name == 'main' }}
     steps:
       - name: Download release candidate
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: release-candidate
           path: ./docs/
