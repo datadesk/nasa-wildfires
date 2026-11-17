@@ -108,7 +108,7 @@ def modis(region, time_range, indent, sort_keys, timeout, verbose):
 
 
 @cmd.command(
-    help="Hotspots detected by the VIIRS satellite (S-NPP) in a recent 24-hour period"
+    help="Decommissioned: the S-NPP satellite no longer reports, so this returns no hotspots"
 )
 @_common_options
 def viirs_suomi(region, time_range, indent, sort_keys, timeout, verbose):
