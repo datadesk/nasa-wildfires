@@ -2,8 +2,6 @@ name: Scrape
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 6 * * *'
 
 jobs:
   scrape:
@@ -13,27 +11,27 @@ jobs:
       - id: checkout
         name: Checkout
         uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-          cache: 'pipenv'
+          fetch-depth: 1
 
-      - id: install-pipenv
-        name: Install pipenv
-        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
-        shell: bash
+      - id: install-uv
+        name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+          cache-dependency-glob: 'uv.lock'
 
       - name: Setup
-        run: pipenv run python setup.py install
+        run: uv sync
         shell: bash
 
       - id: make
         name: Run scrape command
         run: |
-          pipenv run nasawildfires modis --indent=2 > data/modis.json
-          pipenv run nasawildfires viirs-suomi --indent=2 > data/viirs-suomi.json
-          pipenv run nasawildfires viirs-noaa --indent=2 > data/viirs-noaa.json
+          uv run nasawildfires modis --indent=2 > data/modis.json
+          uv run nasawildfires viirs-suomi --indent=2 > data/viirs-suomi.json
+          uv run nasawildfires viirs-noaa --indent=2 > data/viirs-noaa.json
+          uv run nasawildfires viirs-noaa21 --indent=2 > data/viirs-noaa21.json
         shell: bash
 
       - name: Datestamp
