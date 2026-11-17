@@ -51,12 +51,12 @@ NASA publishes detections from two kinds of instrument. MODIS sees patches of gr
 | Short name | Instrument and satellite | Python value |
 | --- | --- | --- |
 | `modis` | MODIS on the Terra and Aqua satellites | `Satellite.MODIS` |
-| `viirs-suomi` | VIIRS on Suomi-NPP (S-NPP) | `Satellite.VIIRS_SUOMI` |
+| `viirs-suomi` | VIIRS on Suomi-NPP (S-NPP), decommissioned and empty | `Satellite.VIIRS_SUOMI` |
 | `viirs-noaa` | VIIRS on NOAA-20 | `Satellite.VIIRS_NOAA` |
 | `viirs-noaa21` | VIIRS on NOAA-21 | `Satellite.VIIRS_NOAA21` |
 
-```{note}
-When this page was written, NASA's Suomi-NPP files had a header and no rows, in every region and time range. You get an empty result for `viirs-suomi`, not an error.
+```{warning}
+The Suomi-NPP satellite has been decommissioned. NASA's Suomi-NPP files now have a header and no rows, in every region and time range, so `viirs-suomi` and `get_viirs_suomi` give you an empty result, not an error. They are kept so older code keeps running. For current VIIRS hotspots, use `viirs-noaa` (NOAA-20) or `viirs-noaa21` (NOAA-21).
 ```
 
 ## Regions and time ranges

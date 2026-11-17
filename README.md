@@ -30,7 +30,7 @@ records = nasa_wildfires.get_hotspot_records("modis", time_range="7d")  # typed 
 print(records[0].acquired_at, records[0].frp)
 ```
 
-`get_modis`, `get_viirs_suomi` and `get_viirs_noaa` still work.
+`get_modis`, `get_viirs_suomi` and `get_viirs_noaa` still work. The Suomi-NPP satellite has been decommissioned, so `get_viirs_suomi` and the `viirs-suomi` command now return no hotspots. Use NOAA-20 or NOAA-21 instead.
 
 ## Things to know
 

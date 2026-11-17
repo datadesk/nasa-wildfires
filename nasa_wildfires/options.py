@@ -32,7 +32,7 @@ class Satellite(StrEnum):
     """
 
     MODIS = "modis"
-    VIIRS_SUOMI = "viirs-suomi"
+    VIIRS_SUOMI = "viirs-suomi"  # Decommissioned: NASA's files are empty
     VIIRS_NOAA = "viirs-noaa"
     VIIRS_NOAA21 = "viirs-noaa21"
 

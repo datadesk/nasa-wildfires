@@ -139,6 +139,11 @@ def get_viirs_suomi(
 ) -> geojson.FeatureCollection:
     """Hotspots detected by the VIIRS Suomi-NPP (S-NPP) satellite.
 
+    The Suomi-NPP satellite has been decommissioned. NASA's files for it have
+    a header and no rows, so this returns an empty feature collection. It is
+    kept so older code keeps running. Use `get_viirs_noaa` or `get_hotspots`
+    with "viirs-noaa21" for current data.
+
     Defaults to the world in a recent 24-hour period.
 
     Args:
