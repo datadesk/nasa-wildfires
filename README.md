@@ -32,6 +32,27 @@ print(records[0].acquired_at, records[0].frp)
 
 `get_modis`, `get_viirs_suomi` and `get_viirs_noaa` still work. The Suomi-NPP satellite has been decommissioned, so `get_viirs_suomi` and the `viirs-suomi` command now return no hotspots. Use NOAA-20 or NOAA-21 instead.
 
+## Use your own request function
+
+Some projects send every web request through their own helper, for shared retries, logging or proxy settings. Pass that helper as `get` and the package will use it instead of `requests.get`. It is called like `get(url, timeout=seconds)` and must return something with a `status_code` and the file's `content` as bytes. The timeout, the retries and the switching between NASA's two domains all still work, and failures still raise `NASAError`.
+
+```python
+import requests
+
+import nasa_wildfires
+from nasa_wildfires import Reply
+
+
+def my_get(url: str, *, timeout: float) -> Reply:
+    print("Asking for", url)
+    return requests.get(url, timeout=timeout, headers={"User-Agent": "my-project"})
+
+
+data = nasa_wildfires.get_hotspots("modis", get=my_get)
+```
+
+The `Fetcher` and `Reply` types describe this, so a type checker can confirm your function fits. If your function raises one of the `requests` library's errors, such as a timeout, the package tries again just as it does for its own requests. Any other error is passed on to you.
+
 ## Working on the code
 
 This repository's full history is about 19 GB, because the scraped data files were saved to it for years. Copy only the latest version:
