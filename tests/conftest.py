@@ -10,10 +10,18 @@ DATA = Path(__file__).parent / "data"
 class FakeResponse:
     """A stand-in for a ``requests`` response."""
 
-    def __init__(self, content: bytes, status_code: int = 200) -> None:
+    def __init__(self, content: bytes = b"", status_code: int = 200) -> None:
         self.content = content
         self.status_code = status_code
         self.ok = status_code < 400
+
+
+@pytest.fixture(autouse=True)
+def no_waiting(monkeypatch):
+    """Skip the pauses between retries so the tests run fast."""
+    from nasa_wildfires import fetch
+
+    monkeypatch.setattr(fetch.time, "sleep", lambda seconds: None)
 
 
 @pytest.fixture
@@ -33,7 +41,7 @@ def fake_nasa(monkeypatch, sample_csv):
     The fake answers every request with the sample whose name is in
     ``fake_nasa.sample``. Set it before calling the package.
     """
-    import nasa_wildfires
+    from nasa_wildfires import fetch
 
     class Fake:
         sample = "modis.csv"
@@ -44,7 +52,8 @@ def fake_nasa(monkeypatch, sample_csv):
 
     def get(url, *args, **kwargs):
         fake.urls.append(url)
+        fake.kwargs = kwargs
         return FakeResponse(sample_csv(fake.sample))
 
-    monkeypatch.setattr(nasa_wildfires.requests, "get", get)
+    monkeypatch.setattr(fetch.requests, "get", get)
     return fake

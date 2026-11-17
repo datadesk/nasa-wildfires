@@ -10,7 +10,6 @@ dependencies = [
     "click",
     "geojson",
     "requests",
-    "retry",
 ]
 authors = [{ name = "Ben Welsh", email = "b@palewi.re" }]
 description = "Download wildfire hotspots detected by NASA satellites and the Fire Information for Resource Management System (FIRMS)"
