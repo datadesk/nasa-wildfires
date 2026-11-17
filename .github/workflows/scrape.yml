@@ -2,8 +2,6 @@ name: Scrape
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 6 * * *'
 
 jobs:
   scrape:
@@ -31,6 +29,7 @@ jobs:
           uv run nasawildfires modis --indent=2 > data/modis.json
           uv run nasawildfires viirs-suomi --indent=2 > data/viirs-suomi.json
           uv run nasawildfires viirs-noaa --indent=2 > data/viirs-noaa.json
+          uv run nasawildfires viirs-noaa21 --indent=2 > data/viirs-noaa21.json
         shell: bash
 
       - name: Datestamp
