@@ -148,6 +148,30 @@ nasa_wildfires.SATELLITE_LIST
 ["modis", "viirs-suomi", "viirs-noaa", "viirs-noaa21"]
 ```
 
+## Errors, timeouts and retries
+
+Each request waits at most 60 seconds for NASA. A request that cannot reach NASA, times out, or gets a server error (status 500 and up) or "too many requests" (429) is tried again, up to four tries in all, with a longer pause each time. NASA publishes every file on two domains, `firms` and `firms2`, and the tries take turns between them. Other errors, such as "not found", fail right away.
+
+When it still fails, the package raises `nasa_wildfires.NASAError`, which carries the `url` and the `status_code`. If NASA's file arrives but cannot be read, it raises `nasa_wildfires.NASADataError`, which is also a `ValueError`. The old `AssertionError` is no longer used.
+
+```python
+try:
+    data = nasa_wildfires.get_hotspots("modis", timeout=30)
+except nasa_wildfires.NASAError as error:
+    print(error)
+```
+
+On the command line, `--timeout` sets the wait, and a failure prints one line starting with `Error:` and exits with code 1. `--verbose` now prints each request to standard error, so the GeoJSON on standard output stays valid.
+
+## Typed records
+
+`get_hotspot_records` returns `nasa_wildfires.Hotspot` objects, with numbers already parsed and one UTC `acquired_at` time, instead of GeoJSON.
+
+```python
+for hotspot in nasa_wildfires.get_hotspot_records("viirs-noaa21", region="alaska"):
+    print(hotspot.acquired_at, hotspot.latitude, hotspot.longitude, hotspot.frp)
+```
+
 ## Contributing
 
 Install dependencies for development.
