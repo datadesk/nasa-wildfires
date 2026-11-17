@@ -13,6 +13,8 @@ jobs:
       - id: checkout
         name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
 
       - id: install-uv
         name: Install uv

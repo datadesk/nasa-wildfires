@@ -32,6 +32,16 @@ print(records[0].acquired_at, records[0].frp)
 
 `get_modis`, `get_viirs_suomi` and `get_viirs_noaa` still work. The Suomi-NPP satellite has been decommissioned, so `get_viirs_suomi` and the `viirs-suomi` command now return no hotspots. Use NOAA-20 or NOAA-21 instead.
 
+## Working on the code
+
+This repository's full history is about 19 GB, because the scraped data files were saved to it for years. Copy only the latest version:
+
+```bash
+git clone --depth 1 https://github.com/datadesk/nasa-wildfires.git
+```
+
+The automated checks do the same, so the version number comes from a tag only on a tagged release.
+
 ## Things to know
 
 * **Detections are not confirmed wildfires.** The documentation explains each column, including `confidence` and `frp` (fire radiative power, in megawatts).
