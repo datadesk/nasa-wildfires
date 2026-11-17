@@ -27,9 +27,23 @@ Options:
   --help  Show this message and exit.
 
 Commands:
-  modis  Hotspots detected by the MODIS satellitel
-  viirs_suomi  Hotspots detected by the VIRRS S-NPP satellite.
-  viirs_noaa  Hotspots detected by the VIRRS NOAA-20 satellite.
+  hotspots      Hotspots detected by any satellite, chosen with --satellite
+  modis         Hotspots detected by the MODIS satellite
+  viirs-noaa    Hotspots detected by the VIIRS satellite (NOAA-20)
+  viirs-noaa21  Hotspots detected by the VIIRS satellite (NOAA-21)
+  viirs-suomi   Hotspots detected by the VIIRS satellite (S-NPP)
+```
+
+Download a GeoJSON of hotspots detected by the VIIRS NOAA-21 satellite in a recent 24-hour period.
+
+```bash
+nasawildfires viirs-noaa21
+```
+
+Pick the satellite with an option instead.
+
+```bash
+nasawildfires hotspots --satellite viirs-noaa21 --region alaska --time-range 7d
 ```
 Download a GeoJSON of hotspots detected by the MODIS satellite in a recent 24-hour period.
 
@@ -117,6 +131,21 @@ Download a GeoJSON of hotspots detected by the VIIRS NOAA-20 satellite in a rece
 
 ```python
 nasa_wildfires.get_viirs_noaa()
+```
+
+Download hotspots from the VIIRS NOAA-21 satellite. Returns GeoJSON.
+
+```python
+nasa_wildfires.get_viirs_noaa21()
+```
+
+Or use one function for any satellite. The satellite can be a short name or a `nasa_wildfires.Satellite` value.
+
+```python
+nasa_wildfires.get_hotspots("viirs-noaa21", region="alaska", time_range="7d")
+nasa_wildfires.get_hotspots(nasa_wildfires.Satellite.MODIS)
+nasa_wildfires.SATELLITE_LIST
+["modis", "viirs-suomi", "viirs-noaa", "viirs-noaa21"]
 ```
 
 ## Contributing

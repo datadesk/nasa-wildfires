@@ -11,7 +11,13 @@ import time
 
 import pytest
 
-from nasa_wildfires import get_modis, get_viirs_noaa, get_viirs_suomi, options
+from nasa_wildfires import (
+    get_modis,
+    get_viirs_noaa,
+    get_viirs_noaa21,
+    get_viirs_suomi,
+    options,
+)
 
 pytestmark = pytest.mark.live
 
@@ -21,7 +27,9 @@ COMBO_LIST = list(
 
 
 @pytest.mark.parametrize(
-    "func", [get_modis, get_viirs_suomi, get_viirs_noaa], ids=lambda f: f.__name__
+    "func",
+    [get_modis, get_viirs_suomi, get_viirs_noaa, get_viirs_noaa21],
+    ids=lambda f: f.__name__,
 )
 def test_live_download(func):
     """Download the default and a few random region and time combinations."""
