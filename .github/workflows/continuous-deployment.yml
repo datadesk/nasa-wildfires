@@ -75,7 +75,12 @@ jobs:
       - name: Install Python dependencies
         run: uv sync --group test --python ${{ matrix.python }}
 
+      - name: Run offline tests with coverage
+        if: matrix.python == '3.14'
+        run: uv run pytest --cov --cov-report=term-missing
+
       - name: Run offline tests
+        if: matrix.python != '3.14'
         run: uv run pytest
 
   test-live:
