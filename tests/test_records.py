@@ -113,3 +113,25 @@ def test_geojson_stays_as_text(fake_nasa):
     feature = nasa_wildfires.get_modis()["features"][0]
     assert feature["properties"]["acq_time"] == "0000"
     assert feature["properties"]["confidence"] == "0"
+
+
+@pytest.mark.parametrize("value", ["x", "", "DN"])
+def test_bad_day_night_flag_is_clear(sample_csv, value):
+    """A day or night flag that is not D or N is refused, and blank is too."""
+    row = first_row(sample_csv, "modis.csv") | {"daynight": value}
+    with pytest.raises(ValueError, match="daynight should be D or N"):
+        Hotspot.from_row(row, Satellite.MODIS)
+
+
+def test_day_night_flag_ignores_case_and_spaces(sample_csv):
+    """A lowercase flag with stray spaces still reads as night."""
+    row = first_row(sample_csv, "modis.csv") | {"daynight": " n "}
+    assert Hotspot.from_row(row, Satellite.MODIS).is_daytime is False
+
+
+def test_word_confidence_is_kept_as_level(sample_csv):
+    """A confidence written as a word becomes a level with no percent."""
+    row = first_row(sample_csv, "viirs-noaa.csv") | {"confidence": " Nominal "}
+    hotspot = Hotspot.from_row(row, Satellite.VIIRS_NOAA)
+    assert hotspot.confidence_level == "nominal"
+    assert hotspot.confidence_percent is None

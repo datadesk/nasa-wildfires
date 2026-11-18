@@ -97,3 +97,21 @@ def test_cli_hotspots_needs_a_satellite():
     """The generic command refuses to run without --satellite."""
     result = CliRunner().invoke(cmd, ["hotspots"])
     assert result.exit_code == 2
+
+
+@pytest.mark.parametrize("satellite", list(Satellite))
+def test_cli_hotspots_command(fake_nasa, satellite):
+    """The general command takes the satellite by name, in any letter case."""
+    fake_nasa.sample = SAMPLES[satellite]
+    result = CliRunner().invoke(
+        cmd, ["hotspots", "--satellite", str(satellite).upper()]
+    )
+    assert result.exit_code == 0
+    assert fake_nasa.urls[0].endswith(PATHS[satellite])
+
+
+def test_cli_hotspots_requires_a_satellite():
+    """Leaving out the satellite is a usage error, not a crash."""
+    result = CliRunner().invoke(cmd, ["hotspots"])
+    assert result.exit_code == 2
+    assert "--satellite" in result.output

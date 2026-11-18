@@ -263,6 +263,8 @@ Run the offline tests, the linter and the type checker.
 make check
 ```
 
+The tests also measure test coverage, counting branches, and fail if it drops below 95%. Run `make test-fast` for a quicker run without coverage.
+
 The tests that call NASA's real website are skipped by default. Run them with `make test-live`.
 
 ## Developing the CLI
